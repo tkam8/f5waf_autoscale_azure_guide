@@ -3,14 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to F5 WAF Autoscale Azure Guide's documentation!
+F5 WAF Autoscale Azure Guide Index
 ========================================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :glob:
 
-
+   intro
+   azure_setup/azure_setup.rst
+   arm_deploy/arm_deploy.rst
+   test_deployment/test_deployment.rst
+   service_discovery/service_discovery.rst
+   autoscale_testing/autoscale_testing.rst
+   
 
 Indices and tables
 ==================
