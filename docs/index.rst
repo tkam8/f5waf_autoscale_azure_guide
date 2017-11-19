@@ -12,6 +12,7 @@ F5 WAF Autoscale Azure Guide Index
    :glob:
 
    intro
+   labinfo
    azure_setup/azure_setup.rst
    arm_deploy/arm_deploy.rst
    test_deployment/test_deployment.rst
