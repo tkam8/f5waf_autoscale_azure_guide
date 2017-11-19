@@ -3,42 +3,54 @@
 WORDPRESS インスタンスのデプロイ
 ====================================================
 
-.. graphviz::
+前の手順で作成した WordPress インスタンス x 1 台が Availability set 内で起動するようにします。
 
-   digraph breadcrumb {
-      rankdir="LR"
-      ranksep=.4
-      node [fontsize=10,style="rounded,filled",shape=box,color=gray72,margin="0.05,0.05",height=0.1] 
-      fontname = "arial-bold" 
-      fontsize = 10
-      labeljust="l"
-      subgraph cluster_provider {
-         style = "rounded,filled"
-         color = lightgrey
-         height = .75
-         label = "Provider"
-         bigip [label="BIG-IP",color="steelblue1"]
-         iapps [label="iApp Templates&#92;n& Deployments"]
-         iwf_templates [label="Service&#92;nTemplates"]
-      }
-      subgraph cluster_tenant {
-         style = "rounded,filled"
-         color = lightgrey
-         height = .75
-         label = "Tenant"
-         iwf_catalog [label="Service&#92;nCatalog"]
-         iwf_deploy [label="Service&#92;nDeployment"]
-      }
-      iwf_deploy -> iwf_catalog -> iwf_templates -> iapps -> bigip
-   }
+#. ハブメニューで **Virtual machines** を選択し、 **Add** をクリックします。
 
+   |wp_1|
+   
+#. 検索フォームに “wordpress” と入力し、Enter キーを押します。 
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
+   |wp_2|
+   
+#. 本ガイドでは、以下の WordPress イメージを選択しました。
 
+   |wp_3|
+   
+   |wp_4|
+   
+#. 基本設定の画面で以下の通り設定します。
+   
+   |wp_5|
+   
+#. 仮想マシンのサイズを選択します。
+   このガイドでは一番小さい **A0** を選択しました。 
 
+   |wp_6|
+   
+#. 前の手順で作成した Availability set を選択します。
+
+   |wp_7|
+   
+#. 本ガイドでは、仮想ネットワークを以下のように /28 サブネットで分割して設定します。
+
+   |wp_8|
+   
+#. Summary ページで全ての設定値を確認し、OK をクリックします。
+
+   |wp_9|
+   
+#. デプロイが完了しましたら、以下の通りTAGを設定し、Saveを押します。
+
+   |wp_10|
+   
+.. |as_1| image:: images/as_1.png
+.. |as_2| image:: images/as_2.png
+.. |as_3| image:: images/as_3.png
+.. |as_4| image:: images/as_4.png
+.. |as_5| image:: images/as_5.png
+.. |as_6| image:: images/as_6.png
+.. |as_7| image:: images/as_7.png
+.. |as_8| image:: images/as_8.png
+.. |as_9| image:: images/as_9.png
+.. |as_10| image:: images/as_10.png

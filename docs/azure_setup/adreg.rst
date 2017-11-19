@@ -3,42 +3,28 @@
 ACTIVE DIRECTORY への WEB アプリケーションの登録
 ====================================================
 
-.. graphviz::
-
-   digraph breadcrumb {
-      rankdir="LR"
-      ranksep=.4
-      node [fontsize=10,style="rounded,filled",shape=box,color=gray72,margin="0.05,0.05",height=0.1] 
-      fontname = "arial-bold" 
-      fontsize = 10
-      labeljust="l"
-      subgraph cluster_provider {
-         style = "rounded,filled"
-         color = lightgrey
-         height = .75
-         label = "Provider"
-         bigip [label="BIG-IP",color="steelblue1"]
-         iapps [label="iApp Templates&#92;n& Deployments"]
-         iwf_templates [label="Service&#92;nTemplates"]
-      }
-      subgraph cluster_tenant {
-         style = "rounded,filled"
-         color = lightgrey
-         height = .75
-         label = "Tenant"
-         iwf_catalog [label="Service&#92;nCatalog"]
-         iwf_deploy [label="Service&#92;nDeployment"]
-      }
-      iwf_deploy -> iwf_catalog -> iwf_templates -> iapps -> bigip
-   }
+アプリケーションでリソースにアクセスしたり変更を加えたりするには、Azure Active Directory (AD) アプリケーションをセットアップして、そこに必要な権限を割り当てる必要があります。 
 
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
+#. Azure Portal (http://portal.azure.com) にログインします。
 
+#. ハブメニューで **Azure Active Directory** を選択します。
+
+#. **App registrations** を選択します。
+
+#. **New application registration** を選択します。
+
+   |adreg_1|
+   
+#. アプリケーションの名前と URL を指定します。作成するアプリケーションの種類として、
+   **Web app / API** または **Native** を選択します。値を設定したら、 **Create** をクリックします。 
+   
+   |adreg_2|
+   
+   
+
+
+.. |adreg_1| image:: images/adreg_1.png
+   :scale: 75%
+.. |adreg_2| image:: images/adreg_2.png
 
