@@ -24,7 +24,7 @@ F5 WAF public IP address をクリックすると、F5 WAF のフロントエン
    |conf1_5|
 
    
-.. |conf_1| image:: images/conf_1.png
+.. |conf1_1| image:: images/conf1_1.png
 .. |conf1_2| image:: images/conf1_2.png   
 .. |conf1_3| image:: images/conf1_3.png 
 .. |conf1_4| image:: images/conf1_4.png 
