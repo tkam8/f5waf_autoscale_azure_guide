@@ -25,6 +25,5 @@ ACTIVE DIRECTORY への WEB アプリケーションの登録
 
 
 .. |adreg_1| image:: images/adreg_1.png
-   :scale: 75%
 .. |adreg_2| image:: images/adreg_2.png
 

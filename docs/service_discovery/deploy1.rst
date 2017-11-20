@@ -23,6 +23,9 @@ https://github.com/F5Networks/f5-azure-arm-templates/tree/master/supported/solut
    
    |svcdsc_3|
    
+   |svcdsc_4|
+   
 .. |svcdsc_1| image:: images/svcdsc_1.png
 .. |svcdsc_2| image:: images/svcdsc_2.png   
 .. |svcdsc_3| image:: images/svcdsc_3.png
+.. |svcdsc_4| image:: images/svcdsc_4.png
