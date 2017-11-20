@@ -3,14 +3,32 @@
 ARM テンプレートによって作成されたオブジェクトの確認
 ====================================================
 
+#. ARM テンプレートによって作成されたフロントエンド ALB が F5 WAF リソースグループをロードバランシング対象としていることを確認します。
 
+   |conf1_1|
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
+#. ハブメニューで **More services** をクリックし、”Virtual machine scale sets” を検索します。
+
+   |conf1_2|
+
+#. Virtual machine scale set 内に 2 つの F5 WAF インスタンス (Device Service Cluster (DSC), HA 構成) があることを確認します。 
+
+   |conf1_3|
+
+#. F5 WAF public IP を確認するには、More services をクリックし ”Public IP addresses” を検索します。 
+
+   |conf1_4|
+   
+F5 WAF public IP address をクリックすると、F5 WAF のフロントエンド ALB のIP address と DNS名が表示されます。
+
+   |conf1_5|
+
+   
+.. |conf_1| image:: images/conf_1.png
+.. |conf1_2| image:: images/conf1_2.png   
+.. |conf1_3| image:: images/conf1_3.png 
+.. |conf1_4| image:: images/conf1_4.png 
+.. |conf1_5| image:: images/conf1_5.png 
+
 
 

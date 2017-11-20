@@ -3,14 +3,26 @@
 SERVICE DISCOVERY用のIAPPをデプロイ
 ====================================================
 
+Service Discovery機能の詳細に関しては、以下のリンクをご参照ください。
 
+https://github.com/F5Networks/f5-azure-arm-templates/tree/master/supported/solutions/autoscale/waf/existing_stack#service-discovery
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
+#. **iApps** > **Application Services** > **Applications** をクリックします。
 
+   |svcdsc_1|
+   
+#. 新規 **Application Service** を作成するには、 **Create** をクリックします。
 
+#. 任意の名前を入力し、 **f5.service_discovery** のテンプレートを選択します。
+
+   |svcdsc_2|
+   
+#. 以下の通り設定します。
+
+   .. NOTE:: Subscription IDはAzureポータル上のBillingで確認できます。
+   
+   |svcdsc_3|
+   
+.. |svcdsc_1| image:: images/svcdsc_1.png
+.. |svcdsc_2| image:: images/svcdsc_2.png   
+.. |svcdsc_3| image:: images/svcdsc_3.png

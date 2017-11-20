@@ -3,14 +3,11 @@
 WORDPRESS アプリケーションへの接続の確認
 ====================================================
 
+F5 WAF 用の ALB の DNS 名で Web アプリケーションにアクセスが可能なことを確認します。
+このDNS名はALB の Public IP に解決され、仮想マシンスケールセット内の  F5 WAF (BIG-IP ASM) 
+宛ての通信をロードバランスします。
+
+   |conf3_1|
 
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
-
-
+.. |conf3_1| image:: images/conf3_1.png

@@ -3,14 +3,20 @@
 セキュリティポリシーをENFORCEに設定
 ====================================================
 
+#. **Security** > **Application Security** > **Parameters** > **Parameters List** をクリックします。
 
+   |enf_1|
+   
+#. ワイルドカード（*）パラメータのチェックボックスを入れ、 **Enforce** をクリックします。
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
+   |enf_2|
+
+#. 変更をポリシーに適用するためにApply Policyをクリックします。
+
+   |enf_3|
+
+.. |enf_1| image:: images/enf_1.png
+.. |enf_2| image:: images/enf_2.png   
+.. |enf_3| image:: images/enf_3.png 
 
 

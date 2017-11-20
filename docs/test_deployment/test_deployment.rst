@@ -1,13 +1,7 @@
 SECURITY POLICY のテスト (SQL インジェクション)
 ===================================================
 
-This introductory class covers the following topics:
-
-- Imperative Automation using the F5 BIG-IP iControl REST API
-- Service Abstraction and Automation using F5 iApp templates
-- Building Declarative Interfaces with the F5 iWorkflow product
-
-完了までの所要時間: **１時間**
+F5 WAF が WordPress アプリケーションに対する SQL インジェクション攻撃をブロックすることを確認します。 
 
 
 .. toctree::

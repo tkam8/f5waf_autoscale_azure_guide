@@ -1,13 +1,10 @@
 AUTOSCALE の動作確認
 ===================================================
 
-This introductory class covers the following topics:
+クライアント通信をシミュレートしたトラフィックを生成、F5 WAF の scale up/scale out イベントをトリガし、追加のインスタンスが仮想マシンスケールセット内に自動的にデプロイされることを確認します。
 
-- Imperative Automation using the F5 BIG-IP iControl REST API
-- Service Abstraction and Automation using F5 iApp templates
-- Building Declarative Interfaces with the F5 iWorkflow product
-
-完了までの所要時間: **１時間**
+Autoscale のベストプラクティスについては、以下のドキュメントをご参照下さい。 
+https://docs.microsoft.com/ja-jp/azure/monitoring-and-diagnostics/insights-autoscale-best-practices 
 
 
 .. toctree::

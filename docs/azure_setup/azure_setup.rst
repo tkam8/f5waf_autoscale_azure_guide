@@ -17,7 +17,6 @@ This introductory class covers the following topics:
    adreg
    appid
    rscgrp1
-   rscgrp2
    aset1
    wpdeploy
    f5wafnet

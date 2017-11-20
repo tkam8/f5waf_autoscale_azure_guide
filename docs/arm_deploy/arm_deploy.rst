@@ -1,20 +1,15 @@
 F5 WAF (LTM+ASM) AUTO SCALING用テンプレートのデプロイ
 ===================================================
 
-This introductory class covers the following topics:
+このソリューションは、自動スケーリング用に構成されたMicrosoft Azure VMスケールセットにARMテンプレートを使用して、F5 BIG-IP LTM + ASM仮想版 (Virtual Edition) インスタンスの展開を実施します。 トラフィックは、AzureロードバランサからBIG-IP VE (クラスタ) に、次にアプリケーションサーバに流れます。 BIG-IP VEはシングル NIC モードで構成されています。 トラフィックが増加または減少するにつれて BIG-IP VE LTMインスタンスの数が自動的に増減します。 スケーリングのしきい値は現在、ネットワーク出力スループットに基づいています。 このソリューションは、BIG-IP LTM + ASM向けです。
 
-- Imperative Automation using the F5 BIG-IP iControl REST API
-- Service Abstraction and Automation using F5 iApp templates
-- Building Declarative Interfaces with the F5 iWorkflow product
-
-完了までの所要時間: **１時間**
 
 
 .. toctree::
    :maxdepth: 1
    :glob:
 
-   armdeploy
+   deploy
    confirm1
    confirm2
    confirm3

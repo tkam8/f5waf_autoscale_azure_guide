@@ -3,14 +3,16 @@
 パフォーマンス試験用アプリケーションの起動
 ====================================================
 
+本ガイドでは Apache JMeter v3.2 を使用して F5 WAF 宛てのクライアント通信 (HTTP requests) をシミュレーションします。 
 
+#. Thread Group を以下の例のように設定し、Azure の Scaleup イベントを発生させます 
+   (パラメーターは試験環境に応じて、適宜調整して下さい)。 
 
-.. NOTE:: In order to confirm the results of REST API calls made in this lab, it's 
-   recommended to keep GUI/SSH sessions to BIG-IP and iWorkflow devices open. 
-   By default, BIG-IP and iWorkflow will log all the REST API related events locally 
-   to **restjavad.0.log** . These logs can also be directed to a remote syslog server 
-   (see https://support.f5.com/csp/article/K13080). On a side note, the **ltm** 
-   log files listed below contains log messages specific to  BIG-IP local 
-   traffic management events. 
+   |perf_1|
 
+#. 同様に、HTTP request を設定します。 
 
+   |perf_2|
+   
+.. |perf_1| image:: images/perf_1.png
+.. |perf_2| image:: images/perf_2.png
