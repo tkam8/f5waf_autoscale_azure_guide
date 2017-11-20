@@ -19,7 +19,41 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+import time
+import re
+import string
+sys.path.insert(0, os.path.abspath('.'))
+import f5_sphinx_theme
 
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+on_snops = os.environ.get('SNOPS_ISALIVE', None) == 'True'
+
+print "on_rtd = %s" % on_rtd
+print "on_snops = %s" % on_snops
+
+branch_map = {
+    "stable":"master",
+    "latest":"master"
+}
+
+try:
+    if not on_rtd:
+        from git import Repo
+        repo = Repo("%s/../" % os.getcwd())
+        git_branch = repo.active_branch
+        git_branch_name = git_branch.name
+    else:
+        git_branch_name = os.environ.get('READTHEDOCS_VERSION', None)
+except:
+    git_branch_name = 'master'
+
+print "guessed git branch: %s" % git_branch_name
+
+if git_branch_name in branch_map:
+    git_branch_name = branch_map[git_branch_name]
+    print " remapped to git branch: %s" % git_branch_name
 
 # -- General configuration ------------------------------------------------
 
@@ -30,7 +64,28 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'sphinx.ext.todo',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.graphviz',
+    'sphinxcontrib.spelling',
+    'sphinxcontrib.addmetahtml'
+]
+
+spelling_word_list_filename = "../wordlist"
+
+#googleanalytics_id = 'UA-85156643-6'
+#googleanalytics_enabled = True
+addmetahtml_content = """<script async src="https://www.googletagmanager.com/gtag/js?id=UA-85156643-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-85156643-6');
+</script>
+"""
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -49,6 +104,34 @@ project = u'F5 WAF Autoscale Azure Guide'
 copyright = u'2017, Terence Kam (F5)'
 author = u'Terence Kam (F5)'
 
+rst_prolog = """
+.. |classname| replace:: %s
+.. |classbold| replace:: **%s**
+.. |classitalic| replace:: *%s*
+.. |ltm| replace:: Local Traffic Manager
+.. |adc| replace:: Application Delivery Controller
+.. |gtm| replace:: Global Traffic Manager
+.. |dns| replace:: DNS
+.. |asm| replace:: Application Security Manager
+.. |afm| replace:: Advanced Firewall Manager
+.. |apm| replace:: Access Policy Manager
+.. |pem| replace:: Policy Enforcement Manager
+.. |ipi| replace:: IP Intelligence
+.. |iwf| replace:: iWorkflow
+.. |biq| replace:: BIG-IQ
+.. |bip| replace:: BIG-IP
+.. |aiq| replace:: APP-IQ
+.. |ve|  replace:: Virtual Edition
+.. |icr| replace:: iControl REST API
+.. |ics| replace:: iControl SOAP API
+.. |f5|  replace:: F5 Networks
+.. |f5i| replace:: F5 Networks, Inc.
+.. |year| replace:: %s
+""" % (classname,
+       classname,
+       classname,
+       year)
+	   
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
@@ -82,8 +165,22 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
+import f5_sphinx_theme
+html_theme = 'f5_sphinx_theme'
+html_theme_path = f5_sphinx_theme.get_html_theme_path()
+html_sidebars = {'**': ['searchbox.html', 'localtoc.html', 'globaltoc.html','relations.html']}
+html_theme_options = {
+                        'site_name': 'Community Training Classes & Labs',
+                        'next_prev_link': True
+                     }
 
+if on_rtd:
+    templates_path = ['_templates']
+
+extlinks = {
+    'raw_github_url':( ("https://raw.githubusercontent.com/f5devcentral/f5-automation-labs/%s%%s" % git_branch_name), None)
+}
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -115,8 +212,39 @@ htmlhelp_basename = 'F5WAFAutoscaleAzureGuidedoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
+front_cover_image = 'front_cover'
+back_cover_image = 'back_cover'
+
+front_cover_image_path = os.path.join('_static', front_cover_image + '.png')
+back_cover_image_path = os.path.join('_static', back_cover_image + '.png')
+
+latex_additional_files = [front_cover_image_path, back_cover_image_path]
+
+template = string.Template(open('preamble.tex').read())
+
+latex_contents = r"""
+\frontcoverpage
+\contentspage
+"""
+
+backcover_latex_contents = r"""
+\backcoverpage
+"""
 
 latex_elements = {
+    'papersize': 'letterpaper',
+    'pointsize': '10pt',
+    'fncychap': r'\usepackage[Bjornstrup]{fncychap}',
+    'preamble': template.substitute(eventname=eventname,
+                                    project=project,
+                                    author=author,
+                                    frontcoverimage=front_cover_image,
+                                    backcoverimage=back_cover_image),
+
+    'tableofcontents': latex_contents,
+    'printindex': backcover_latex_contents
+}
+#latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
@@ -132,7 +260,7 @@ latex_elements = {
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
-}
+#}
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
