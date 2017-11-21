@@ -104,6 +104,11 @@ project = u'F5 WAF Autoscale Azure Guide'
 copyright = u'2017, Terence Kam (F5)'
 author = u'Terence Kam (F5)'
 
+classname = project
+cleanname = re.sub('\W+','',project)
+year = time.strftime("%Y")
+eventname = "F5 WAF Autoscale Azure Guide %s" % (year)
+
 rst_prolog = """
 .. |classname| replace:: %s
 .. |classbold| replace:: **%s**
