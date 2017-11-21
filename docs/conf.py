@@ -179,7 +179,7 @@ if on_rtd:
     templates_path = ['_templates']
 
 extlinks = {
-    'raw_github_url':( ("https://raw.githubusercontent.com/f5devcentral/f5-automation-labs/%s%%s" % git_branch_name), None)
+    'raw_github_url':( ("https://raw.githubusercontent.com/tkam8/f5waf_autoscale_azure_guide/%s%%s" % git_branch_name), None)
 }
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
