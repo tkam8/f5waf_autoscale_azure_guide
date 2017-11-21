@@ -44,13 +44,13 @@ WORDPRESS インスタンスのデプロイ
 
    |wp_10|
    
-.. |as_1| image:: images/as_1.png
-.. |as_2| image:: images/as_2.png
-.. |as_3| image:: images/as_3.png
-.. |as_4| image:: images/as_4.png
-.. |as_5| image:: images/as_5.png
-.. |as_6| image:: images/as_6.png
-.. |as_7| image:: images/as_7.png
-.. |as_8| image:: images/as_8.png
-.. |as_9| image:: images/as_9.png
-.. |as_10| image:: images/as_10.png
+.. |wp_1| image:: images/wp_1.png
+.. |wp_2| image:: images/wp_2.png
+.. |wp_3| image:: images/wp_3.png
+.. |wp_4| image:: images/wp_4.png
+.. |wp_5| image:: images/wp_5.png
+.. |wp_6| image:: images/wp_6.png
+.. |wp_7| image:: images/wp_7.png
+.. |wp_8| image:: images/wp_8.png
+.. |wp_9| image:: images/wp_9.png
+.. |wp_10| image:: images/wp_10.png
