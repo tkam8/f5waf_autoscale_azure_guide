@@ -271,8 +271,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'F5WAFAutoscaleAzureGuide.tex', u'F5 WAF Autoscale Azure Guide Documentation',
-     u'Terence Kam (F5)', 'manual'),
+    (master_doc, '%s.tex' % cleanname, u'%s Documentation' % classname,
+     u'F5 Networks, Inc.', 'manual', True),
 ]
 
 
