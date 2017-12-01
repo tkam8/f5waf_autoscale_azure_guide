@@ -18,3 +18,9 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	
+platexpdf:
+  $(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+  @echo "Running pLaTeX files through platex..."
+  make -C $(BUILDDIR)/latex all-pdf-ja
+  @echo "platex finished; the PDF files are in $(BUILDDIR)/latex."
