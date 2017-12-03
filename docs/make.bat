@@ -13,15 +13,15 @@ set SPHINXPROJ=F5WAFAutoscaleAzureGuide
 
 if "%1" == "" goto help
 
-if "%1" == "latexpdfja" (
-  %SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
-  cd %BUILDDIR%/latex
-  make all-pdf-ja
-  cd %BUILDDIR%/..
-  echo.
-  echo.Build finished; the PDF files are in %BUILDDIR%/latex.
-  goto end
-)
+#if "%1" == "latexpdfja" (
+#  %SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
+#  cd %BUILDDIR%/latex
+#  make all-pdf-ja
+#  cd %BUILDDIR%/..
+#  echo.
+#  echo.Build finished; the PDF files are in %BUILDDIR%/latex.
+#  goto end
+#)
 
 %SPHINXBUILD% >NUL 2>NUL
 if errorlevel 9009 (
