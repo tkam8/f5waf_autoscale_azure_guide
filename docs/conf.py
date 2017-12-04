@@ -93,7 +93,6 @@ print "on_rtd = %s" % on_rtd
 print "on_snops = %s" % on_snops
 
 
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -148,8 +147,7 @@ master_doc = 'index'
 project = u'F5 WAF Autoscale Azure Guide'
 copyright = u'2017, Terence Kam (F5)'
 author = u'Terence Kam (F5)'
-
-	   
+  
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
