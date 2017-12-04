@@ -12,6 +12,23 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+# BEGIN CONFIG
+# ------------
+#
+# REQUIRED: Your class/lab name
+classname = "F5 WAF Autoscale Azure Guide"
+
+# OPTIONAL: The URL to the GitHub Repository for this class
+github_repo = "https://github.com/tkam8/f5waf_autoscale_azure_guide"
+
+# OPTIONAL: Google Analytics
+# googleanalytics_id = 'UA-85156643-4'
+
+#
+# END CONFIG
+# ----------
+
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -23,89 +40,11 @@ import os
 import sys
 import time
 import re
+import pkgutil
 import string
 sys.path.insert(0, os.path.abspath('.'))
 import f5_sphinx_theme
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-on_snops = os.environ.get('SNOPS_ISALIVE', None) == 'True'
-
-print "on_rtd = %s" % on_rtd
-print "on_snops = %s" % on_snops
-
-branch_map = {
-    "stable":"master",
-    "latest":"master"
-}
-
-try:
-    if not on_rtd:
-        from git import Repo
-        repo = Repo("%s/../" % os.getcwd())
-        git_branch = repo.active_branch
-        git_branch_name = git_branch.name
-    else:
-        git_branch_name = os.environ.get('READTHEDOCS_VERSION', None)
-except:
-    git_branch_name = 'master'
-
-print "guessed git branch: %s" % git_branch_name
-
-if git_branch_name in branch_map:
-    git_branch_name = branch_map[git_branch_name]
-    print " remapped to git branch: %s" % git_branch_name
-
-# -- General configuration ------------------------------------------------
-
-# If your documentation needs a minimal Sphinx version, state it here.
-#
-# needs_sphinx = '1.0'
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-extensions = [
-    'sphinx.ext.todo',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.extlinks',
-    'sphinx.ext.graphviz',
-    'sphinxcontrib.spelling',
-    'sphinxcontrib.addmetahtml'
-]
-
-spelling_word_list_filename = "../wordlist"
-
-#googleanalytics_id = 'UA-85156643-6'
-#googleanalytics_enabled = True
-addmetahtml_content = """<script async src="https://www.googletagmanager.com/gtag/js?id=UA-85156643-6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-85156643-6');
-</script>
-"""
-
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
-
-# The suffix(es) of source filenames.
-# You can specify multiple suffix as a list of string:
-#
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
-
-# The master toctree document.
-master_doc = 'index'
-
-# General information about the project.
-project = u'F5 WAF Autoscale Azure Guide'
-copyright = u'2017, Terence Kam (F5)'
-author = u'Terence Kam (F5)'
-
-classname = project
-cleanname = re.sub('\W+','',project)
 year = time.strftime("%Y")
 eventname = "F5 WAF Autoscale Azure Guide %s" % (year)
 
@@ -136,6 +75,80 @@ rst_prolog = """
        classname,
        classname,
        year)
+
+if 'github_repo' in locals() and len(github_repo) > 0:
+    rst_prolog += """
+.. |repoinfo| replace:: The content contained here leverages a full DevOps CI/CD
+              pipeline and is sourced from the GitHub repository at %s.
+              Bugs and Requests for enhancements can be made using by
+              opening an Issue within the repository.
+""" % (github_repo)
+else:
+rst_prolog += ".. |repoinfo| replace:: \ \n"
+
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+on_snops = os.environ.get('SNOPS_ISALIVE', None) == 'True'
+
+print "on_rtd = %s" % on_rtd
+print "on_snops = %s" % on_snops
+
+
+
+# -- General configuration ------------------------------------------------
+
+# If your documentation needs a minimal Sphinx version, state it here.
+#
+# needs_sphinx = '1.0'
+
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# ones.
+extensions = [
+  'sphinxjp.themes.basicstrap',
+  'sphinx.ext.todo',
+  'sphinx.ext.autosectionlabel'
+]
+
+if 'googleanalytics_id' in locals() and len(googleanalytics_id) > 0:
+  extensions += ['sphinxcontrib.googleanalytics']
+  googleanalytics_enabled = True
+
+eggs_loader = pkgutil.find_loader('sphinxcontrib.spelling')
+found = eggs_loader is not None
+
+if found:
+  extensions += ['sphinxcontrib.spelling']
+  spelling_lang='en_US'
+  spelling_word_list_filename='../wordlist'
+  spelling_show_suggestions=True
+  spelling_ignore_pypi_package_names=False
+  spelling_ignore_wiki_words=True
+  spelling_ignore_acronyms=True
+  spelling_ignore_python_builtins=True
+  spelling_ignore_importable_modules=True
+  spelling_filters=[]
+
+source_parsers = {
+   '.md': 'recommonmark.parser.CommonMarkParser',
+}
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ['_templates']
+
+# The suffix(es) of source filenames.
+# You can specify multiple suffix as a list of string:
+#
+# source_suffix = ['.rst', '.md']
+source_suffix = '.rst'
+
+# The master toctree document.
+master_doc = 'index'
+
+# General information about the project.
+project = u'F5 WAF Autoscale Azure Guide'
+copyright = u'2017, Terence Kam (F5)'
+author = u'Terence Kam (F5)'
+
 	   
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -163,7 +176,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = False
+todo_emit_warnings = True
+todo_include_todos = True
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -172,7 +186,6 @@ todo_include_todos = False
 # a list of builtin themes.
 #
 #html_theme = 'alabaster'
-import f5_sphinx_theme
 html_theme = 'f5_sphinx_theme'
 html_theme_path = f5_sphinx_theme.get_html_theme_path()
 html_sidebars = {'**': ['searchbox.html', 'localtoc.html', 'globaltoc.html','relations.html']}
@@ -181,11 +194,11 @@ html_theme_options = {
                         'next_prev_link': True
                      }
 
-if on_rtd:
-    templates_path = ['_templates']
+def setup(app):
+    app.add_stylesheet('css/f5_agility_theme.css')
 
-extlinks = {
-    'raw_github_url':( ("https://raw.githubusercontent.com/tkam8/f5waf_autoscale_azure_guide/%s%%s" % git_branch_name), None)
+if on_rtd:
+templates_path = ['_templates']
 }
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -213,13 +226,18 @@ html_sidebars = {
 
 # -- Options for HTMLHelp output ------------------------------------------
 
-# Output file base name for HTML help builder.
-htmlhelp_basename = 'F5WAFAutoscaleAzureGuidedoc'
+cleanname = re.sub('\W+','',classname)
 
+# Output file base name for HTML help builder.
+htmlhelp_basename =  cleanname + 'doc'
 
 # -- Options for LaTeX output ---------------------------------------------
+
+latex_engine = 'platex'
+
 front_cover_image = 'front_cover'
 back_cover_image = 'back_cover'
+latex_paper_size = 'a4'
 
 front_cover_image_path = os.path.join('_static', front_cover_image + '.png')
 back_cover_image_path = os.path.join('_static', back_cover_image + '.png')
@@ -238,7 +256,7 @@ backcover_latex_contents = r"""
 """
 
 latex_elements = {
-    'papersize': 'letterpaper',
+    'papersize': 'a4paper',
     'pointsize': '10pt',
     'fncychap': r'\usepackage[Bjornstrup]{fncychap}',
     'preamble': template.substitute(eventname=eventname,
@@ -250,23 +268,6 @@ latex_elements = {
     'tableofcontents': latex_contents,
     'printindex': backcover_latex_contents
 }
-#latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
-
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
-
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
-
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
-#}
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
@@ -276,13 +277,12 @@ latex_documents = [
      u'F5 Networks, Inc.', 'manual', True),
 ]
 
-
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'f5wafautoscaleazureguide', u'F5 WAF Autoscale Azure Guide Documentation',
+    (master_doc, cleanname.lower(), u'%s Documentation' % classname,
      [author], 1)
 ]
 
@@ -293,9 +293,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'F5WAFAutoscaleAzureGuide', u'F5 WAF Autoscale Azure Guide Documentation',
-     author, 'F5WAFAutoscaleAzureGuide', 'One line description of project.',
-     'Miscellaneous'),
+    (master_doc, classname, u'%s Documentation' % classname,
+     author, classname, classname,
+     'Training'),
 ]
 
 
