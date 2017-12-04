@@ -237,7 +237,6 @@ latex_engine = 'platex'
 
 front_cover_image = 'front_cover'
 back_cover_image = 'back_cover'
-latex_paper_size = 'a4'
 
 front_cover_image_path = os.path.join('_static', front_cover_image + '.png')
 back_cover_image_path = os.path.join('_static', back_cover_image + '.png')
