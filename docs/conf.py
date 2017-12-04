@@ -190,7 +190,7 @@ html_theme = 'f5_sphinx_theme'
 html_theme_path = f5_sphinx_theme.get_html_theme_path()
 html_sidebars = {'**': ['searchbox.html', 'localtoc.html', 'globaltoc.html','relations.html']}
 html_theme_options = {
-                        'site_name': 'Community Training Classes & Labs',
+                        'site_name': 'F5 WAF Autoscale Azure Guide',
                         'next_prev_link': True
                      }
 
@@ -266,7 +266,9 @@ latex_elements = {
                                     backcoverimage=back_cover_image),
 
     'tableofcontents': latex_contents,
-    'printindex': backcover_latex_contents
+    'printindex': backcover_latex_contents,
+	'classoptions': ',dvipdfmx',
+	'babel': '\usepackage[japanese]{babel}'
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
