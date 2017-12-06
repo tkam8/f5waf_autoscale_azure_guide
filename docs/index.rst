@@ -20,9 +20,3 @@ F5 WAF Autoscale Azure Guide Index
    autoscale_testing/autoscale_testing.rst
    
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

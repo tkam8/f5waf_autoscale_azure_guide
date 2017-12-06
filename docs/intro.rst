@@ -11,6 +11,7 @@ Azure の要件
 
 - Azure 従量課金 (Pay-As-You-Go) サブスクリプション契約があること 
 - Azure サブスクリプションでアプリケーションを共同作成者 (Contributor) ロールに割り当てるためのアクセス権が必要です。 詳細は以下のリンクをご参照下さい。 
+  
   - https://docs.microsoft.com/ja-jp/azure/azure-resource-manager/resource-group-create-service-principal-portal 
 
 
